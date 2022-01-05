@@ -214,7 +214,7 @@ export default class ElfTrackerChannel {
     return false;
   }
 
-  public async checkTranche(user, networkToMonitor, tranche, elementTranches, sdk, simulate) {
+  public async checkTranche(user, networkToMonitor, tranche, elementTranches, sdk) {
     const logger = this.logger;
 
     // logger.info("checking Tranche for user %s", user);
@@ -232,7 +232,7 @@ export default class ElfTrackerChannel {
     return new Promise((resolve) => {
 
     // check if ANY balance of principle, yield, LP principle or LP yield token. if so; add notification for this tranche
-    this.checkAllTokenBalances(user, networkToMonitor, tranche, elementTranches[tranche], sdk, simulate)
+    this.checkAllTokenBalances(user, networkToMonitor, tranche, elementTranches[tranche], sdk)
       .then((tokenOwned: any) => {
 
         let expiration = elementTranches[tranche].expiration;
@@ -250,7 +250,7 @@ export default class ElfTrackerChannel {
     })
   }
 
-  public async checkAllTokenBalances(user, networkToMonitor, tranche_index, tranche, sdk, simulate){
+  public async checkAllTokenBalances(user, networkToMonitor, tranche_index, tranche, sdk){
     const logger = this.logger;
 
     if(!tranche){
