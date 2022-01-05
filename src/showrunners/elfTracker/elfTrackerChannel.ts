@@ -288,7 +288,7 @@ export default class ElfTrackerChannel {
               return contract.balanceOf(user)
               .then(res=> {
                 let rawBalance = Number(Number(res));
-                let tokenBalance = Number(rawBalance/Math.pow(10, decimals)).toLocaleString()
+                let tokenBalance = Number(Number(rawBalance/Math.pow(10, decimals)).toLocaleString());
                 return {
                   user,
                   name,
@@ -298,11 +298,11 @@ export default class ElfTrackerChannel {
             })
         })
       
-      // if(tokenInfo.balance == "0"){
-      return new Promise((resolve, reject) => {
-        resolve (tokenInfo)
-      })
-      // }
+      if(tokenInfo.balance > 0){
+        return new Promise((resolve, reject) => {
+          resolve (tokenInfo)
+        })
+      }
     }
     // logger.info("no balance of any token in this tranche found for user %s", user);
   }
